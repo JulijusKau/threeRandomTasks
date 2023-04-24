@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { TaskOne } from "./task-1/components/TaskOne";
+import { TaskTwo } from "./task-2/components/TaskTwo";
+import { TaskThree } from "./task-3/components/TaskThree";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        flexWrap: "wrap",
+        width: "1800px",
+      }}
+      className="App"
+    >
+      <TaskOne></TaskOne>
+      <TaskTwo></TaskTwo>
+      <TaskThree></TaskThree>
     </div>
   );
 }
