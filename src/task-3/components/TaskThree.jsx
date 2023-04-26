@@ -8,32 +8,50 @@ import {
 import { DropDownValue } from "./DropDownValue";
 
 export const TaskThree = () => {
-  const [rows, setRows] = useState(1);
-  const [squaresPerRow, setSquaresPerRow] = useState(1);
-  const [columns, setColumns] = useState(1);
-  let wholeArray = Array.from({ length: rows * squaresPerRow }, (_, i) => {
-    return i + 1;
-  });
+  const [nMatrix, setNMatrix] = useState(1);
+
+  const testFunction = (n) => {
+    let matrix = [];
+    const mid = Math.floor(n / 2);
+
+    for (let i = 0; i < n; i++) {
+      let row = [];
+      let total1s = n - 2 * i;
+      let margin = (n - total1s) / 2;
+
+      for (let j = 0; j < n; j++) {
+        if (j >= margin && j < margin + total1s) {
+          // row.push(1);
+          row.push(
+            <StyledSquare>
+              <StyledDotInSquare />
+            </StyledSquare>
+          );
+        } else {
+          // row.push(0);
+          row.push(<StyledSquare />);
+        }
+      }
+
+      if (i <= mid) {
+        matrix.push(<StyledMainDivRow>{row}</StyledMainDivRow>);
+      } else {
+        matrix.push(matrix[n - i - 1]);
+      }
+    }
+    console.log(matrix);
+    return <div>{matrix}</div>;
+  };
 
   const onButtonClick = (e) => {
-    const val = e.target.value;
-    setRows(val);
-    setSquaresPerRow(val);
-    setColumns(val);
-    console.log(wholeArray);
+    setNMatrix(e.target.value);
   };
 
   return (
     <StyledMainDiv>
       <h1>N X N Symetrical matrix where N = odd number and Nmax = 11</h1>
       <DropDownValue onClickFunction={onButtonClick} />
-      {Array.from({ length: rows }, (_, i) => (
-        <StyledMainDivRow key={i}>
-          {wholeArray.slice(i * columns, (i + 1) * columns).map((c) => {
-            return <StyledSquare key={c}>{c}</StyledSquare>;
-          })}
-        </StyledMainDivRow>
-      ))}
+      {testFunction(nMatrix)}
     </StyledMainDiv>
   );
 };
