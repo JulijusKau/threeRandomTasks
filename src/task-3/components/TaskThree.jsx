@@ -30,8 +30,7 @@ export const TaskThree = () => {
       {Array.from({ length: rows }, (_, i) => (
         <StyledMainDivRow key={i}>
           {wholeArray.slice(i * columns, (i + 1) * columns).map((c) => {
-            {
-              return <StyledSquare key={c}>{c}</StyledSquare>;
+            return <StyledSquare key={c}>{c}</StyledSquare>;
           })}
         </StyledMainDivRow>
       ))}
