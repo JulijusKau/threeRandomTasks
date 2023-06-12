@@ -20,6 +20,7 @@ export const TaskTwo = () => {
     let url = `https://jsonplaceholder.typicode.com/users/${id}`;
 
     axios.delete(url).then((res) => {
+      console.log(res);
       const del = users.filter((user) => id !== user.id);
       setUsers(del);
       console.log(users);
